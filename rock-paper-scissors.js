@@ -1,10 +1,9 @@
 const playArray = ["rock", "paper", "scissors"];
 
 const buttonList = document.querySelectorAll("button");
-const computerselection =
-  document.getElementsByClassName("computer-selection")[0];
-const playerselection = document.getElementsByClassName("player-selection")[0];
-const result = document.getElementsByClassName("result")[0];
+const computerselection = document.querySelector("#computer-selection");
+const playerselection = document.querySelector("#player-selection");
+const result = document.querySelector("#result");
 
 let computerScore = 0;
 let playerScore = 0;
@@ -26,24 +25,10 @@ function playRound(playerSelection, computerSelection) {
     (computerSelection == "scissors" && playerSelection == "rock")
   ) {
     playerScore++;
-    return (
-      "You Win! " +
-      capitalize(playerSelection) +
-      " beats " +
-      capitalize(computerSelection)
-    );
-  } /*if (
-    (computerSelection == "rock" && playerSelection == "scissors") ||
-    (computerSelection == "paper" && playerSelection == "rock") ||
-    (computerSelection == "scissors" && playerSelection == "paper")
-  ) */ else {
+    return "You Win! " + capitalize(playerSelection) + " beats " + capitalize(computerSelection);
+  } else {
     computerScore++;
-    return (
-      "You Lose! " +
-      capitalize(playerSelection) +
-      " loses against " +
-      capitalize(computerSelection)
-    );
+    return "You Lose! " + capitalize(playerSelection) + " loses against " + capitalize(computerSelection);
   }
 }
 
@@ -59,19 +44,10 @@ function clickHandler(event) {
   playerSelection = event.currentTarget.innerHTML;
   computerSelection = computerPlay(playArray);
 
-  computerselection.innerHTML =
-    "Computer's Selection ----------------- : " + computerSelection;
-  playerselection.innerHTML =
-    "Player's   Selection ----------------- : " + playerSelection;
-  result.innerHTML =
-    "Result ----------------- : " +
-    playRound(playerSelection, computerSelection);
-  result.innerHTML +=
-    "<br><br> Player -- " +
-    playerScore +
-    " || " +
-    computerScore +
-    " -- Computer";
+  computerselection.innerHTML = "Computer's Selection ----------------- : " + computerSelection;
+  playerselection.innerHTML = "Player's   Selection ----------------- : " + playerSelection;
+  result.innerHTML = "Result ----------------- : " + playRound(playerSelection, computerSelection);
+  result.innerHTML += "<br><br> Player -- " + playerScore + " || " + computerScore + " -- Computer";
   if (playerScore === 5 || computerScore === 5) {
     if (playerScore > computerScore) eog_msg = "Player wins the game";
     else eog_msg = "Computer wins the game";
